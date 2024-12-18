@@ -25,6 +25,15 @@ def listar_inscripciones(request):
     inscritos = Inscrito.objects.all()
     return render(request, 'listar_inscripciones.html', {'inscritos': inscritos})
 
+def editar_inscripcion(request, pk):
+    inscrito = get_object_or_404(Inscrito, pk=pk)
+    form = InscritoForm(request.POST or None, instance=inscrito)
+    if form.is_valid():
+        form.save()
+        return redirect('listar_inscripciones')
+    return render(request, 'formulario_inscripciones.html', {'form': form})
+
+
 # Eliminar Inscripción
 def eliminar_inscripcion(request, pk):
     inscrito = get_object_or_404(Inscrito, pk=pk)

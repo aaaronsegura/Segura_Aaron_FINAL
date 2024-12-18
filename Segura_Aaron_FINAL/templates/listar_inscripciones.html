@@ -29,6 +29,7 @@
                     <td>{{ inscrito.institucion.nombre }}</td>
                     <td>{{ inscrito.estado }}</td>
                     <td>
+                        <a href="{% url 'editar_inscripcion' inscrito.pk %}" class="btn btn-primary btn-sm">Editar</a>
                         <form method="post" action="{% url 'eliminar_inscripcion' inscrito.pk %}" class="d-inline">
                             {% csrf_token %}
                             <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
